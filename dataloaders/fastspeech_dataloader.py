@@ -26,12 +26,32 @@ class FastSpeechDataLoader():
         data = [i.strip() for i in data if i != '']
         num = len(data)
         if training:
-            self.train_list = data[:int(num * 0.95)]
-            self.test_list = data[int(num * 0.95):]
+            self.train_list = data[:int(num * 0.98)]
+            self.test_list = data[int(num * 0.98):]
             np.random.shuffle(self.train_list)
             self.train_offset = 0
             self.test_offset = 0
             logging.info('load train list {} test list{}'.format(len(self.train_list), len(self.test_list)))
+            if self.config['balance_spk_utts']:
+                spk_utt = {}
+                for line in self.train_list:
+                    c = os.path.split(line)[-1][:4]
+                    if c in spk_utt:
+                        spk_utt[c].append(line)
+                    else:
+                        spk_utt[c] = [line]
+                maxlen = max([len(spk_utt[i]) for i in spk_utt])
+                self.train_list = []
+                for key in spk_utt:
+                    datas = spk_utt[key]
+                    if len(datas) < maxlen:
+                        factor = int(np.rint(maxlen / len(datas)))
+                    else:
+                        factor = 1
+                    datas *= factor
+                    self.train_list += datas
+                np.random.shuffle(self.train_list)
+                logging.info('balance spk utts: train list {}'.format(len(self.train_list)))
         else:
             self.test_list = data
             self.offset = 0

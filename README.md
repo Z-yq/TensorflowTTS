@@ -16,7 +16,13 @@
 </p>
 <p align="center">
 欢迎使用并反馈bug
+# 其它项目
 
+ASR：https://github.com/Z-yq/TensorflowASR
+
+NLU:  -
+
+BOT:  -
 
 ## Pretrained Model
 
@@ -55,6 +61,7 @@ Melgan|https://pan.baidu.com/s/13QSRG6Rb1N0vaJFB2MYiGg|r6e3|24M|0.02|
 -   pypinyin `if you need use the default phoneme`
 -   addons `pip install tensorflow-addons`
 -   tqdm
+-   pesq
 
 ## Usage
 
@@ -62,13 +69,13 @@ Melgan|https://pan.baidu.com/s/13QSRG6Rb1N0vaJFB2MYiGg|r6e3|24M|0.02|
 
 
     **声学特征模型** 格式，其中'\t'为tap:
-
+    
     ```text
     file_path1 \t text1 \t spkid
     file_path2 \t text2 \t spkid
     ……
     ```
-
+    
     **声码器** 格式:
     ```text
     file_path1
@@ -76,15 +83,16 @@ Melgan|https://pan.baidu.com/s/13QSRG6Rb1N0vaJFB2MYiGg|r6e3|24M|0.02|
     ……
     ```
 
-        
+
+​        
 2.修改配置文件 **common.yml** 和模型配置文件 **tacotron.yml/vocoder.yml**来自定义自己的模型。
 3.然后执行命令:
-  
+
     ```shell
     python train_acoustic.py --data_config ./configs/common.yml --model_config ./configs/tacotron.yml
     python train_vocoder.py --data_config ./configs/common.yml --model_config ./configs/vocoder.yml
     ```
-  
+
 4.想要测试时，可以参考 **_`run-test.py`_** 里写的demo.
 
 
@@ -118,7 +126,7 @@ Melgan|https://pan.baidu.com/s/13QSRG6Rb1N0vaJFB2MYiGg|r6e3|24M|0.02|
 
 不要忘记你的音素列表用 **_`/S`_** 打头,e.g:
 
-        
+
         /S
         d
         sh

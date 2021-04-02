@@ -15,7 +15,7 @@ for gpu in gpus:
 class Trainer():
     def __init__(self,config):
         self.config=config
-        self.am_model=AMmodel(config=config)
+        self.am_model=TTSmodel(config=config)
         self.am_model.load_model(True)
         if self.am_model.acoustic=='Tacotron2':
             self.dg=tacotron_dataloader.TacotronDataLoader(self.config)

@@ -1,7 +1,7 @@
 
 train_list: './dump/train.list'
 outdir: './fastspeech'
-
+balance_spk_utts: True
 batch_size: 32
 eval_steps_per_batches: 10
 num_epochs: 100

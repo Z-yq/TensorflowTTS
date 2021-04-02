@@ -1,0 +1,61 @@
+#Training
+use_gan: True
+
+frame_length: 16000
+gan_start_step: 10000
+mel_loss_thread: 3
+outdir: 'melgan'
+train_list: './dump/train.list'
+load_from_npz: True
+adjust_type: 'tacotron' #tacotron / fastspeech
+batch_size: 16
+num_epochs: 10000
+eval_steps_per_batches: 10
+
+log_interval_steps: 300
+eval_interval_steps: 500
+save_interval_steps: 500
+
+learning_rate: 0.0001
+beta_1: 0.9
+beta_2: 0.98
+epsilon: 0.00001
+
+# MelGan
+vocoder_model: 'MelGan' #MelGan / MultiGen
+input_feature: 'mel' #mel
+out_channels: 16
+kernel_size: 7
+filters: 1024
+stack_kernel_size: 3
+stacks: 3
+window: 20
+nonlinear_activation: "LeakyReLU"
+nonlinear_activation_params: 
+  alpha: 0.2
+padding_type: "REFLECT"
+use_final_activation: False
+num_mels: 80
+initializer_seed: 42
+is_weight_norm: False
+ 
+ 
+#Discriminator
+dis_out_channels: 1
+dis_scales: 3
+dis_downsample_pooling: 'AveragePooling1D'
+dis_downsample_pooling_params:
+  pool_size: 4
+  strides: 2
+dis_kernel_sizes: [5, 3]
+dis_filters: 32
+dis_max_downsample_filters: 1024
+dis_use_bias: True
+dis_downsample_scales: [2,2, 2,2]
+dis_nonlinear_activation: "LeakyReLU"
+dis_nonlinear_activation_params:
+  alpha: 0.2
+dis_padding_type: "REFLECT"
+dis_is_weight_norm: False
+dis_initializer_seed: 42
+

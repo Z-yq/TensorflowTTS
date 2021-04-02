@@ -1,0 +1,67 @@
+#Training Sets
+model_name: 'Tacotron2'
+outputs_per_step: 4
+train_list: './train.list'
+outdir: './tacotron'
+balance_spk_utts: False
+finetune: False
+
+batch_size: 8
+eval_steps_per_batches: 10
+num_epochs: 100
+
+log_interval_steps: 300
+eval_interval_steps: 500
+save_interval_steps: 500
+
+learning_rate: 0.0001
+beta_1: 0.9
+beta_2: 0.98
+epsilon: 0.00001
+
+# tacotron teacher forcing ratio
+end_learning_rate: 0.4
+decay_steps: 50000
+initial_learning_rate: 0.7
+
+#Model configs
+
+embedding_hidden_size: 512
+initializer_range: 0.02
+layer_norm_eps: 0.000001
+embedding_dropout_prob: 0.0
+n_speakers: 10
+
+encoder_type: 'conformer' # tacotron / conformer
+n_conv_encoder: 16 # conformer =16 /tacotron =5
+#conformer encoder set
+conformer_dmodel: 144
+conformer_fc_factor: 0.6
+conformer_num_heads: 4
+conformer_head_size: 32
+conformer_kernel_size: 32
+conformer_dropout: 0.0
+###tacotron encoder set
+encoder_conv_filters: 512
+encoder_conv_kernel_sizes: 5
+encoder_conv_activation: 'mish'
+encoder_conv_dropout_rate: 0.0
+encoder_lstm_units: 512
+
+encoder_out_units: 512
+reduction_factor: 2
+n_prenet_layers: 2
+prenet_units: 256
+prenet_activation: 'mish'
+prenet_dropout_rate: 0.0
+lstm_type: 'nascell' #lstm / gru /lnlstm/nascell/peephole
+n_lstm_decoder: 2
+decoder_lstm_units: 512
+attention_type: 'lsa'
+attention_dim: 512
+attention_filters: 32
+attention_kernel: 31
+n_conv_postnet: 5
+postnet_conv_filters: 512
+postnet_conv_kernel_sizes: 5
+postnet_dropout_rate: 0.0

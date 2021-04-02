@@ -1,0 +1,11 @@
+
+*.xml
+*.iml
+*.pyc
+*.npz
+make.py
+*.png
+show.py
+*.h5
+*.wav
+vocoder_train.list

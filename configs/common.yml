@@ -1,0 +1,23 @@
+num_mels: 80 # Number of mel-spectrogram channels and local conditioning dimensionality
+num_freq: 513 # (:  n_fft / 2 + 1) only used when adding linear spectrograms post processing network
+rescaling_max: 0.999 # Rescaling value
+# Mel spectrogram
+n_fft: 1024 # Extra window size is filled with 0 paddings to match this parameter
+sample_rate: 8000
+hop_size: 0.016 # For 22050Hz275 ~:  12.5 ms (0.0125 * sample_rate)
+win_size: 0.05 # For 22050Hz1100 ~:  50 ms (If Nonewin_size :  n_fft) (0.05 * sample_rate)
+max_abs_value: 4.
+power :  1.5  #Only used in G&L inversion, usually values between 1.2 and 1.5 are a good choice.
+griffin_lim_iters :  1
+# Limits
+min_level_db: -100
+ref_level_db: 20
+fmin: 0
+fmax: 4000
+
+out_data_dir: './dump'
+#Token sets
+vocabulary: './configs/token.txt'
+spker: './configs/spk.txt'
+maplist: './configs/pinyin_2_phone.map'
+blank_at_zero: True
